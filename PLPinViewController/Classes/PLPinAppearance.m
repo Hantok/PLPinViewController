@@ -59,6 +59,8 @@
     self.enterPinErrorMessageVisibleDuration = 1.0f;
     
     self.statusBarStyle = UIStatusBarStyleDefault;
+
+    self.biometricButtonColor = [UIColor whiteColor];
 }
 
 @end

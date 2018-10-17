@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -63,7 +62,7 @@
                                         <rect key="frame" x="0.0" y="79" width="375" height="51"/>
                                         <subviews>
                                             <stackView opaque="NO" tag="1111" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" placeholderIntrinsicWidth="155" placeholderIntrinsicHeight="30" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ofj-sB-S7q">
-                                                <rect key="frame" x="110" y="10" width="155" height="30"/>
+                                                <rect key="frame" x="110" y="10.5" width="155" height="30"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -106,10 +105,10 @@
                                 </subviews>
                             </stackView>
                             <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Uf-Uik">
-                                <rect key="frame" x="-0.5" y="170" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVALID PIN, TRY AGAIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOh-kk-tW2">
-                                        <rect key="frame" x="131" y="9" width="114" height="12"/>
+                                        <rect key="frame" x="130.5" y="9" width="114" height="12"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -360,17 +359,32 @@
                                             <action selector="deleteButtonPressed:" destination="fBe-FM-yAI" eventType="touchUpInside" id="4RB-Rv-iIB"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ptn-rf-fqV">
+                                        <rect key="frame" x="67.5" y="488.5" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="H7s-B8-csu"/>
+                                            <constraint firstAttribute="width" constant="70" id="f3W-6U-XFY"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="face_id"/>
+                                        <connections>
+                                            <action selector="biometricButtonPressed:" destination="fBe-FM-yAI" eventType="touchUpInside" id="UNr-dY-4VO"/>
+                                            <action selector="deleteButtonPressed:" destination="fBe-FM-yAI" eventType="touchUpInside" id="RQT-ga-wJm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ebQ-KZ-Vxj" firstAttribute="centerX" secondItem="JKM-gJ-JAg" secondAttribute="centerX" id="1UO-BR-r1p"/>
                                     <constraint firstItem="ebQ-KZ-Vxj" firstAttribute="top" secondItem="10q-D6-8w9" secondAttribute="bottom" constant="15" id="1q7-II-HLl"/>
+                                    <constraint firstItem="Ptn-rf-fqV" firstAttribute="centerY" secondItem="ebQ-KZ-Vxj" secondAttribute="centerY" id="2fm-dG-hl2"/>
                                     <constraint firstItem="10q-D6-8w9" firstAttribute="top" secondItem="JKM-gJ-JAg" secondAttribute="top" priority="750" constant="233.5" id="8q1-rX-4ah"/>
                                     <constraint firstItem="ebQ-KZ-Vxj" firstAttribute="width" secondItem="xf5-EU-joB" secondAttribute="width" id="Fg9-Rf-HcD"/>
                                     <constraint firstItem="10q-D6-8w9" firstAttribute="centerX" secondItem="JKM-gJ-JAg" secondAttribute="centerX" id="TtS-m7-6DU"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ebQ-KZ-Vxj" secondAttribute="bottom" constant="20" id="aEj-Bs-LYw"/>
                                     <constraint firstItem="ebQ-KZ-Vxj" firstAttribute="height" secondItem="xf5-EU-joB" secondAttribute="height" id="cmF-OP-I3m"/>
                                     <constraint firstItem="i74-eQ-iX8" firstAttribute="top" secondItem="10q-D6-8w9" secondAttribute="bottom" constant="30" id="fUe-rn-Pv9"/>
+                                    <constraint firstItem="ebQ-KZ-Vxj" firstAttribute="leading" secondItem="Ptn-rf-fqV" secondAttribute="trailing" constant="15" id="gZh-j8-psU"/>
                                     <constraint firstItem="i74-eQ-iX8" firstAttribute="leading" secondItem="ebQ-KZ-Vxj" secondAttribute="trailing" constant="27" id="szN-cL-5Ii"/>
                                 </constraints>
                             </view>
@@ -384,6 +398,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="biometricButton" destination="Ptn-rf-fqV" id="uYQ-fY-oke"/>
                         <outlet property="deleteButton" destination="i74-eQ-iX8" id="NzC-zL-7Qk"/>
                         <outlet property="inputView" destination="JKM-gJ-JAg" id="ozE-L3-m0e"/>
                         <outlet property="keypadHeightConstraint" destination="sfH-JT-QRc" id="e6v-Cz-x7i"/>
@@ -454,7 +469,7 @@
                                         <rect key="frame" x="0.0" y="104" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" tag="1111" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" placeholderIntrinsicWidth="155" placeholderIntrinsicHeight="30" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OBr-fB-EUs">
-                                                <rect key="frame" x="109.5" y="5" width="155" height="30"/>
+                                                <rect key="frame" x="110" y="5" width="155" height="30"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -775,6 +790,7 @@
     </scenes>
     <resources>
         <image name="closeButton" width="21" height="21"/>
+        <image name="face_id" width="50" height="50"/>
         <image name="pl_img_delete" width="39" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, PLPinViewControllerAction) {
 - (void)pinViewController:(PLPinViewController *)controller didEnterPin:(NSString*)pin;
 - (BOOL)pinViewController:(PLPinViewController *)controller shouldAcceptPin:(NSString*)pin;
 - (void)pinViewController:(PLPinViewController *)controller didSetPin:(NSString*)pin;
+- (void)pinViewController:(PLPinViewController *)controller didPressBiometric:(id)sender;
 
 @end
 
@@ -35,9 +36,9 @@ typedef NS_ENUM(NSInteger, PLPinViewControllerAction) {
 @property (weak) id<PLPinViewControllerDelegate> pinDelegate;
 @property (nonatomic, assign) BOOL enableCancel;
 @property (nonatomic, assign) NSInteger pinLength;
+@property (nonatomic, assign) BOOL enableBiometric;
 
-
-+ (void)showControllerWithAction:(PLPinViewControllerAction)action enableCancel:(BOOL)enableCancel pinLength:(NSInteger)pinLength delegate:(id<PLPinViewControllerDelegate>)delegate animated:(BOOL)animated;
++ (void)showControllerWithAction:(PLPinViewControllerAction)action enableCancel:(BOOL)enableCancel pinLength:(NSInteger)pinLength delegate:(id<PLPinViewControllerDelegate>)delegate animated:(BOOL)animated biometric:(BOOL)biometric;
 
 
 

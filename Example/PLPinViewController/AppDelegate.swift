@@ -94,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pinAppearance?.logoutButtonFont = UIFont.textStyle2
         pinAppearance?.logoutLabelTextColor = UIColor.coolGrey
         pinAppearance?.logoutButtonFont = UIFont.textStyle7
+        pinAppearance?.biometricButtonColor = UIColor.coolGrey
         PLPinWindow.defaultInstance().pinAppearance = pinAppearance
     }
 }
