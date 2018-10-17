@@ -29,19 +29,19 @@ class PLExampleViewController: UIViewController {
     @IBAction func changePinPressed(_ sender: Any) {
         let pinItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "apppin", accessGroup: KeychainConfiguration.accessGroup)
         if let _ = try? pinItem.readPassword() {
-            PLPinViewController.show(with: .change, enableCancel: true, pinLength:5 , delegate: self, animated: true)
-        }else{
-            PLPinViewController.show(with: .create, enableCancel: false, pinLength:5 , delegate: self, animated: true)
+            PLPinViewController.show(with: .change, enableCancel: true, pinLength:5 , delegate: self, animated: true, biometric:true)
+        } else {
+            PLPinViewController.show(with: .create, enableCancel: false, pinLength:5 , delegate: self, animated: true, biometric:true)
         }
     }
     
-    func presentPinController(){
+    func presentPinController() {
         // if we dont have a pin then present create.. if we do then present pin check
         let pinItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "apppin", accessGroup: KeychainConfiguration.accessGroup)
         if let _ = try? pinItem.readPassword() {
-            PLPinViewController.show(with: .enter, enableCancel: false, pinLength:5 , delegate: self, animated: true)
-        }else{
-            PLPinViewController.show(with: .create, enableCancel: false, pinLength:5 , delegate: self, animated: true)
+            PLPinViewController.show(with: .enter, enableCancel: false, pinLength:5 , delegate: self, animated: true, biometric: true)
+        } else {
+            PLPinViewController.show(with: .create, enableCancel: false, pinLength:5 , delegate: self, animated: true, biometric: true)
         }
     }
 }
@@ -89,6 +89,10 @@ extension PLExampleViewController: PLPinViewControllerDelegate {
     
     func pinViewControllerDidCancel(_ controller: PLPinViewController!) {
         PLPinViewController.dismiss()
+    }
+
+    func pinViewController(_ controller: PLPinViewController!, didPressBiometric sender: Any!) {
+        
     }
 
 }

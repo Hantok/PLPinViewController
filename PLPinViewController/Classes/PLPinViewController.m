@@ -5,7 +5,7 @@
 //  Created by Ash Thwaites on 17/09/2016.
 //
 //
-
+#import <LocalAuthentication/LocalAuthentication.h>
 #import "PLPinViewController.h"
 #import "PLCreatePinViewController.h"
 #import "PLEnterPinViewController.h"
@@ -27,6 +27,7 @@
 @property (nonatomic,strong) NSString *lastIdentifier;
 @property (nonatomic,strong) NSString *initialIdentifier;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keypadHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *biometricButton;
 
 @property (nonatomic, strong) NSMutableString *currentPin;
 @property (nonatomic, strong) UIViewController *currentController;
@@ -35,12 +36,13 @@
 
 @implementation PLPinViewController
 
-+ (void)showControllerWithAction:(PLPinViewControllerAction)action enableCancel:(BOOL)enableCancel  pinLength:(NSInteger)pinLength delegate:(id<PLPinViewControllerDelegate>)delegate animated:(BOOL)animated
++ (void)showControllerWithAction:(PLPinViewControllerAction)action enableCancel:(BOOL)enableCancel pinLength:(NSInteger)pinLength delegate:(id<PLPinViewControllerDelegate>)delegate animated:(BOOL)animated biometric:(BOOL)biometric
 {
     PLPinViewController *vc = (PLPinViewController*)[PLPinWindow defaultInstance].rootViewController;
     vc.pinDelegate = delegate;
     vc.enableCancel = enableCancel;
     vc.pinLength = pinLength;
+    vc.enableBiometric = biometric;
     
     switch (action) {
         case PLPinViewControllerActionCreate:
@@ -73,6 +75,7 @@
     [super viewDidLoad];
     
     self.currentPin = [[NSMutableString alloc] init];
+    [self setupBiometric];
     [self setupAppearance];
     
     if (self.initialIdentifier)
@@ -80,7 +83,7 @@
         [self performSegueWithIdentifier:self.initialIdentifier sender:nil];
         return;
     }
-    
+
     [self performSegueWithIdentifier:@"showEnterPin" sender:nil];
 }
 
@@ -126,8 +129,42 @@
     [dotAppearance setUnselectedColor:appearance.pinFillColor];
     [dotAppearance setHighlightedColor:appearance.pinHighlightedColor];
     [dotAppearance setSelectedColor:appearance.pinHighlightedColor];
+    
+    [self.biometricButton setTintColor:appearance.biometricButtonColor];
 }
 
+-(void)setupBiometric {
+    if (self.enableBiometric) {
+        LAContext *context = [[LAContext alloc] init];
+        if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+            if (@available(iOS 11.0, *)) {
+                switch (context.biometryType) {
+                    case LABiometryTypeFaceID:
+                        [self changeBiomtricImageNamed:@"face_id.png"];
+                        break;
+                    case LABiometryTypeTouchID:
+                        [self changeBiomtricImageNamed:@"touch_id.png"];
+                        break;
+                    case LABiometryTypeNone:
+                        [self.biometricButton setHidden:YES];
+                        break;
+                }
+            } else
+                [self changeBiomtricImageNamed:@"touch_id.png"];
+        } else {
+            self.biometricButton.hidden = YES;
+        }
+        
+    } else {
+        self.biometricButton.hidden = YES;
+    }
+}
+
+- (void)changeBiomtricImageNamed:(NSString*)imageName {
+    NSBundle *bundle = [NSBundle bundleForClass:[PLPinViewController class]];
+    UIImage *image = [[UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.biometricButton setImage:image forState:UIControlStateNormal];
+}
 
 - (void)setupDots
 {
@@ -272,6 +309,9 @@
         
         [self setState:PLPinDotStateUnselected forDotWithTag:currentPinCharacter];
     }
+}
+- (IBAction)biometricButtonPressed:(id)sender {
+    [self.pinDelegate pinViewController:self didPressBiometric:sender];
 }
 
 

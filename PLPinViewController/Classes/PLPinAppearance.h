@@ -47,4 +47,6 @@
 
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 
+@property (nonatomic, strong) UIColor *biometricButtonColor;
+
 @end
