@@ -42,7 +42,6 @@
     vc.pinDelegate = delegate;
     vc.enableCancel = enableCancel;
     vc.pinLength = pinLength;
-    vc.enableBiometric = biometric;
     
     switch (action) {
         case PLPinViewControllerActionCreate:
@@ -58,12 +57,14 @@
         default:
             break;
     }
-    
+
     if (vc.initialIdentifier  && [vc isViewLoaded] && vc.view.window)
     {
         [vc performSegueWithIdentifier:vc.initialIdentifier sender:nil];
     }
     [[PLPinWindow defaultInstance] showAnimated:animated];
+    
+    [vc setupBiometric:biometric];
 }
 
 +(void)dismiss
@@ -75,7 +76,6 @@
     [super viewDidLoad];
     
     self.currentPin = [[NSMutableString alloc] init];
-    [self setupBiometric];
     [self setupAppearance];
     
     if (self.initialIdentifier)
@@ -86,7 +86,6 @@
 
     [self performSegueWithIdentifier:@"showEnterPin" sender:nil];
 }
-
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -133,8 +132,8 @@
     [self.biometricButton setTintColor:appearance.biometricButtonColor];
 }
 
--(void)setupBiometric {
-    if (self.enableBiometric) {
+-(void)setupBiometric:(Boolean)enabled {
+    if (enabled) {
         LAContext *context = [[LAContext alloc] init];
         if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
             if (@available(iOS 11.0, *)) {
