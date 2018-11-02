@@ -87,6 +87,12 @@
     [self performSegueWithIdentifier:@"showEnterPin" sender:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [self.pinDelegate pinViewControllerDidShow:self isBiometricEnabled:!self.biometricButton.hidden];
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return [[PLPinWindow defaultInstance].pinAppearance statusBarStyle];

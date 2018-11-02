@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, PLPinViewControllerAction) {
 @protocol PLPinViewControllerDelegate <NSObject>
 
 @optional
-
+- (void)pinViewControllerDidShow:(PLPinViewController *)controller isBiometricEnabled:(BOOL)enabled;
 - (void)pinViewControllerDidCancel:(PLPinViewController *)controller;
 - (void)pinViewControllerDidLogout:(PLPinViewController *)controller;
 - (void)pinViewController:(PLPinViewController *)controller didChangePin:(NSString*)pin;
