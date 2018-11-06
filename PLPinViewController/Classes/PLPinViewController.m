@@ -42,6 +42,7 @@
     vc.pinDelegate = delegate;
     vc.enableCancel = enableCancel;
     vc.pinLength = pinLength;
+    vc.action = action;
     
     switch (action) {
         case PLPinViewControllerActionCreate:

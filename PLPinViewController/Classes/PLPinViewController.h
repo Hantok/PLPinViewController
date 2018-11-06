@@ -36,9 +36,9 @@ typedef NS_ENUM(NSInteger, PLPinViewControllerAction) {
 @property (weak) id<PLPinViewControllerDelegate> pinDelegate;
 @property (nonatomic, assign) BOOL enableCancel;
 @property (nonatomic, assign) NSInteger pinLength;
+@property (nonatomic, assign) PLPinViewControllerAction action;
 
 + (void)showControllerWithAction:(PLPinViewControllerAction)action enableCancel:(BOOL)enableCancel pinLength:(NSInteger)pinLength delegate:(id<PLPinViewControllerDelegate>)delegate animated:(BOOL)animated biometric:(BOOL)biometric;
-
 
 
 +(void)dismiss;
